@@ -150,4 +150,29 @@ async def ship(ctx, userName1: discord.Member = None, userName2: discord.Member 
         else:
             msg.add_field(name=":heartpulse: Matchmaking... :heartpulse: ", value=":small_red_triangle_down: **{}**\n:small_red_triangle: **{}**\n```fix\n{}% - Get a room you two\n```\n:revolving_hearts: ".format(userName1.display_name, userName2.display_name, percent))
     await client.say(embed=msg)
+    
+# <cuddle <user>
+@client.command(pass_context=True)
+async def cuddle(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":warning: ", value="`Mike cuddle (user)`")
+    else:
+        msg.set_image(url="{}".format(random.choice(cuddlelinks)))
+        msg.add_field(name=":tongue: Emotes :tongue:", value="`{}, you got a cuddle from {}!`".format(userName.display_name, author.display_name), inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}cuddle <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+
+cuddlelinks = ["https://i.imgur.com/GWNWcLH.gif",
+               "https://i.imgur.com/i3Eqqgz.gif",
+               "https://i.imgur.com/GpFk6fE.gif",
+               "https://i.imgur.com/mc3Z7wf.gif",
+               "https://i.imgur.com/N5JYB5r.gif",
+               "https://i.imgur.com/PGp8JYq.gif"]
 client.run(os.environ['BOT_TOKEN'])
