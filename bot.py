@@ -175,4 +175,179 @@ cuddlelinks = ["https://i.imgur.com/GWNWcLH.gif",
                "https://i.imgur.com/mc3Z7wf.gif",
                "https://i.imgur.com/N5JYB5r.gif",
                "https://i.imgur.com/PGp8JYq.gif"]
+
+# <pat <user>
+@client.command(pass_context=True)
+async def pat(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":warning: ", value="`Mike pat (user)`")
+    else:
+        msg.set_image(url="{}".format(random.choice(patlinks)))
+        msg.add_field(name=":tongue: Emotes :tongue:", value="`{}, you got a pat from {}!`".format(userName.display_name, author.display_name), inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}pat <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+
+patlinks = ["https://i.imgur.com/8eApUKG.gif",
+            "https://i.imgur.com/qVcP9Pt.gif",
+            "https://i.imgur.com/X9hKO2p.gif",
+            "https://i.imgur.com/v8cRPH9.gif",
+            "https://i.imgur.com/N6C7C30.gif",
+            "https://i.imgur.com/M9QPcY6.gif",
+            "https://i.imgur.com/oUSdjX6.gif",
+            "https://i.imgur.com/mFFr4e0.gif",
+            "https://i.imgur.com/3F7kmCd.gif",
+            "https://i.imgur.com/7yFvJ6m.gif",
+            "https://i.imgur.com/y3La9yP.gif"]
+
+# <kiss <user>
+@client.command(pass_context=True)
+async def kiss(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":warning: ", value="`Mike kiss (user)`")
+    else:
+        msg.set_image(url="{}".format(random.choice(kisslinks)))
+        msg.add_field(name=":tongue: Emotes :tongue:", value="`{}, you got kissed by {}!`".format(userName.display_name, author.display_name), inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}kiss <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+
+kisslinks = ["https://i.imgur.com/0Ri9sfq.gif",
+             "https://i.imgur.com/EMdpmXW.gif",
+             "https://i.imgur.com/Y9iLoiv.gif",
+             "https://i.imgur.com/ZlqZy8S.gif",
+             "https://i.imgur.com/ySav1IQ.gif",
+             "https://i.imgur.com/ZGfrn2d.gif",
+             "https://i.imgur.com/glwWeUl.gif",
+             "https://i.imgur.com/j5hDl7V.gif",
+             "https://i.imgur.com/w7mVYty.gif",
+             "https://i.imgur.com/FJ5bckO.gif",
+             "https://i.imgur.com/KqVmVU7.gif",
+             "https://i.imgur.com/EM1C9a6.gif",
+             "https://i.imgur.com/TACVpH9.gif",
+             "https://i.imgur.com/opiHLtc.gif",
+             "https://i.imgur.com/LylJAea.gif"]
+
+# <poke <user>
+@client.command(pass_context=True)
+async def poke(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":warning: ", value="`Mike poke (user)`")
+    else:
+        msg.set_image(url="{}".format(random.choice(pokelinks)))
+        msg.add_field(name=":tongue: Emotes :tongue:", value="`{}, you got poked by {}!`".format(userName.display_name, author.display_name), inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}poke <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+
+pokelinks = ["https://i.imgur.com/HAAktbl.gif",
+             "https://i.imgur.com/Fmd0Rsu.gif",
+             "https://i.imgur.com/1rObSM3.gif",
+             "https://i.imgur.com/Wo2fc94.gif",
+             "https://i.imgur.com/rtTucBW.gif",
+             "https://i.imgur.com/4c2mC5d.gif",
+             "https://i.imgur.com/1DVD84G.gif"]
+
+# <spank <user>
+@client.command(pass_context=True)
+async def spank(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":warning: ", value="`Mike spank (user)`")
+    else:
+        msg.set_image(url="{}".format(random.choice(spanklinks)))
+        msg.add_field(name=":tongue: Emotes :tongue:", value="`{} spanked {}!`".format(author.display_name, userName.display_name), inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}spank <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+
+spanklinks = ["https://i.imgur.com/dt1TTQu.gif",
+              "https://i.imgur.com/ZsTbDvh.gif",
+              "https://i.imgur.com/4LHwG60.gif",
+              "https://i.imgur.com/xLOoHKP.gif",
+              "https://i.imgur.com/UShywVv.gif",
+              "https://i.imgur.com/RE3mnrA.gif"]
+
+# <hug <user>
+@client.command(pass_context=True)
+async def hug(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":warning: ", value="`Mike hug (user)`")
+    else:
+        msg.set_image(url="{}".format(random.choice(huglinks)))
+        msg.add_field(name=":tongue: Emotes:tongue:", value="`{}, you got a hug from {}!`".format(userName.display_name, author.display_name), inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}hug <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+
+huglinks = ["https://i.imgur.com/yE2RnXK.gif",
+            "https://i.imgur.com/R9sYxk8.gif",
+            "https://i.imgur.com/iLBEoKv.gif",
+            "https://i.imgur.com/cc554e8.gif",
+            "https://i.imgur.com/1dqkjHe.gif",
+            "https://i.imgur.com/Ph8GTqg.gif",
+            "https://i.imgur.com/G6EnOxd.gif",
+            "https://i.imgur.com/ZxwHn5Y.gif",
+            "https://i.imgur.com/movPIsP.gif",
+            "https://i.imgur.com/tKlfSgo.gif",
+            "https://i.imgur.com/ICg9nCr.gif",
+            "https://i.imgur.com/yC95DC2.gif",
+            "https://i.imgur.com/hRYXNKX.gif",
+            "https://i.imgur.com/br3bGQc.gif",
+            "https://i.imgur.com/IcNGAQD.gif"]
+
+# <lick <user>
+@client.command(pass_context=True)
+async def lick(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":warning: ", value="`Mike lick <user>`")
+    else:
+        msg.set_image(url="{}".format(random.choice(licklinks)))
+        msg.add_field(name=":tongue: Emotes :tongue:", value="`{} licked {}!`".format(author.display_name, userName.display_name), inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}lick <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+
+licklinks = ["https://i.imgur.com/QkRz1GJ.gif",
+             "https://i.imgur.com/ObCPKYV.gif",
+             "https://i.imgur.com/7fWrYqd.gif",
+             "https://i.imgur.com/O8CNVUL.gif",
+             "https://i.imgur.com/4QIlJtC.gif",
+             "https://i.imgur.com/LptJIi1.gif",
+             "https://i.imgur.com/THGgRJz.gif"]
 client.run(os.environ['BOT_TOKEN'])
