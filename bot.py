@@ -20,7 +20,7 @@ async def on_ready():
 
 # }punish <user> <time> [reason]
 @client.command(pass_context=True)
-async def punish(ctx, userName: discord.Member = None, time: int = None, *, args = None):
+async def tempmute(ctx, userName: discord.Member = None, time: int = None, *, args = None):
     member_role = discord.utils.get(ctx.message.server.roles, name ='Listener')
     punished_role = discord.utils.get(ctx.message.server.roles, name='Muted')
     helper_role = discord.utils.get(ctx.message.server.roles, name='Helper')
