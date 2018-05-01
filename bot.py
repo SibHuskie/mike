@@ -350,4 +350,19 @@ licklinks = ["https://i.imgur.com/QkRz1GJ.gif",
              "https://i.imgur.com/4QIlJtC.gif",
              "https://i.imgur.com/LptJIi1.gif",
              "https://i.imgur.com/THGgRJz.gif"]
+
+# }help
+client.remove_command('help')
+@client.command(pass_context=True)
+async def help(ctx):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ""
+    msg.add_field(name=":incoming_envelope: ", value="`You can see all commands in the #mike-commands channel!`")
+    msg.set_footer(text=footer_text)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}help")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
 client.run(os.environ['BOT_TOKEN'])
