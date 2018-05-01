@@ -63,4 +63,3 @@ async def punish(ctx, userName: discord.Member = None, time: int = None, *, args
         msg.add_field(name=":warning: ", value="`This command can only be used by staff!`")
         await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
-    client.run(os.environ['BOT_TOKEN'])
