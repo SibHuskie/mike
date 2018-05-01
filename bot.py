@@ -100,7 +100,7 @@ async def kick(ctx, userName: discord.Member = None, *, args = None):
     manager_role = discord.utils.get(ctx.message.server.roles, name='Owners')
     owner_role = discord.utils.get(ctx.message.server.roles, name='Real Toothless')
     author = ctx.message.author
-    msg = discord.Embed(colour=0x871485, description= "")
+    msg = discord.Embed(colour=0xdb5000, description= "")
     msg.title = ""
     msg.set_footer(text=footer_text)
     if mod_role in author.roles or admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
