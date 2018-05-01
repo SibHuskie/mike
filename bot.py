@@ -64,7 +64,7 @@ async def tempmute(ctx, userName: discord.Member = None, time: int = None, *, ar
         
 # <say <text>
 @client.command(pass_context=True)
-async def echo(ctx, *, args=None): 
+async def say(ctx, *, args=None): 
     staff_role = discord.utils.get(ctx.message.server.roles, name='Staff')
     author = ctx.message.author
     msg = discord.Embed(colour=0xdb5000, description= "")
