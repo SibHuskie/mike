@@ -6,8 +6,8 @@ import random
 import time
 import os
 
-client = commands.Bot(command_prefix="mike")
-client = commands.Bot(command_prefix="Mike")
+client = commands.Bot(command_prefix="mike ")
+client = commands.Bot(command_prefix="Mike ")
 footer_text = "Open Mic"
 
 @client.event
