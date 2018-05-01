@@ -80,4 +80,14 @@ async def say(ctx, *, args=None):
     else:
         msg.add_field(name=":warning: ", value="`This command can only be used by Staff!`")
         await client.say(embed=msg)
+        
+# EVENT - JOIN / LEAVE
+@client.async_event
+async def on_member_join(userName: discord.User):
+    joins = ["Hey {}, welcome this legend".format(userName)]
+    await client.send_message(client.get_channel("421935231600427008"), "{}".format(random.choice(joins)))
+    print("============================================================")
+    print("JOIN EVENT")
+    print("{} ### {}".format(userName, userName.id))
+    print("============================================================")
 client.run(os.environ['BOT_TOKEN'])
