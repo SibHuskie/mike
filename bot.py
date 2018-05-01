@@ -17,7 +17,7 @@ async def on_ready():
     print("---------------")
     await client.change_presence(game=discord.Game(name='wit Huskie'))
 
-# }punish <user> <time> [reason]
+# }tempmute <user> <time> [reason]
 @client.command(pass_context=True)
 async def tempmute(ctx, userName: discord.Member = None, time: int = None, *, args = None):
     member_role = discord.utils.get(ctx.message.server.roles, name ='Listener')
@@ -60,5 +60,24 @@ async def tempmute(ctx, userName: discord.Member = None, time: int = None, *, ar
                 await client.say("```diff\n- Removed {}'s mute! ({} minute(s) are up.)\n```".format(userName.display_name, time))
     else:
         msg.add_field(name=":warning: ", value="`This command can only be used by staff!`")
+        await client.say(embed=msg)
+        
+# <say <text>
+@client.command(pass_context=True)
+async def echo(ctx, *, args=None): 
+    staff_role = discord.utils.get(ctx.message.server.roles, name='Staff')
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if staff_role in author.roles or staff_role in author.roles:
+        if args == None:
+            msg.add_field(name=":warning: ", value="Mike say <text>")
+            await client.say(embed=msg)
+        else:
+            await client.say("{}".format(args))
+            await client.delete_message(ctx.message)
+    else:
+        msg.add_field(name=":warning: ", value="`This command can only be used by Staff!`")
         await client.say(embed=msg)
 client.run(os.environ['BOT_TOKEN'])
