@@ -398,4 +398,28 @@ async def userinfo(ctx, userName: discord.Member = None):
     print("<userinfo <user>")
     print("{} ### {}".format(author, author.id))
     print("============================================================")
+    
+# }punch <user>
+@client.command(pass_context=True)
+async def punch(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":warning: ", value="`Mike punch (user)`")
+    else:
+        msg.set_image(url="{}".format(random.choice(punchlinks)))
+        msg.add_field(name=":tongue: Emotes :tongue:", value="`{}, you got punched by {}! :3`".format(userName.display_name, author.display_name), inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}punched <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+    
+punchlinks = ["https://i.imgur.com/T2HdIv8.gif",
+              "https://i.imgur.com/LZz65rg.gif",
+              "https://i.imgur.com/FqPBIf3.gif",
+              "https://i.imgur.com/KmqPDQG.gif",
+              "https://i.imgur.com/yEx4aKu.gif"]
 client.run(os.environ['BOT_TOKEN'])
