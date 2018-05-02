@@ -422,4 +422,22 @@ punchlinks = ["https://i.imgur.com/T2HdIv8.gif",
               "https://i.imgur.com/FqPBIf3.gif",
               "https://i.imgur.com/KmqPDQG.gif",
               "https://i.imgur.com/yEx4aKu.gif"]
+
+# }highfive <user>
+@client.command(pass_context=True)
+async def highfive(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":warning: ", value="`Mike highfive (user)`")
+    else:
+        msg.set_image(url="{}".format(random.choice(highfivelinks)))
+        msg.add_field(name=":tongue: Emotes :tongue:", value="`{} highfived {}! :3`".format(author.display_name, userName.display_name), inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}highfive <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
 client.run(os.environ['BOT_TOKEN'])
