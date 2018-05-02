@@ -440,4 +440,16 @@ async def highfive(ctx, userName: discord.Member = None):
     print("}highfive <user>")
     print("{} ### {}".format(author, author.id))
     print("============================================================")
+    
+highfivelinks = ["https://i.imgur.com/hjoQeOt.gif",
+                 "https://i.imgur.com/9nhheqT.gif",
+                 "https://i.imgur.com/yw3xMOu.gif",
+                 "https://i.imgur.com/Y4g5fsT.gif",
+                 "https://i.imgur.com/p6Hvx5r.gif",
+                 "https://i.imgur.com/33nuO9D.gif",
+                 "https://i.imgur.com/uFQnmYa.gif",
+                 "https://i.imgur.com/9KG3k2n.gif",
+                 "https://i.imgur.com/nHCC1ps.gif",
+                 "https://i.imgur.com/aKvaNba.gif",
+                 "http://i.imgur.com/hnHR29x.gif"]
 client.run(os.environ['BOT_TOKEN'])
