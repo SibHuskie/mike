@@ -452,4 +452,81 @@ highfivelinks = ["https://i.imgur.com/hjoQeOt.gif",
                  "https://i.imgur.com/nHCC1ps.gif",
                  "https://i.imgur.com/aKvaNba.gif",
                  "http://i.imgur.com/hnHR29x.gif"]
+
+# }serverinfo
+@client.command(pass_context=True)
+async def serverinfo(ctx):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ":page_with_curl: SERVER INFORMATION"
+    msg.set_footer(text=footer_text)
+    msg.add_field(name="MEMBERS", value=(len(ctx.message.server.members)), inline=True)
+    msg.add_field(name="CHANNELS", value=(len(ctx.message.server.channels)), inline=True)
+    msg.add_field(name="EMOJIS", value=(len(ctx.message.server.emojis)), inline=True)
+    msg.add_field(name="ID", value=(ctx.message.server.id), inline=True)
+    msg.add_field(name="REGION", value=(ctx.message.server.region), inline=True)
+    msg.add_field(name="ROLES", value=(len(ctx.message.server.roles)), inline=True)
+    msg.add_field(name="OWNER", value=(ctx.message.server.owner), inline=True)
+    msg.add_field(name="CREATED AT", value=(ctx.message.server.created_at), inline=True)
+    msg.add_field(name="RELEASE DATE:", value="9th of March 2018", inline=True)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}serverinfo")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+    
+# }kill <user>
+@client.command(pass_context=True)
+async def kill(ctx, userName: discord.Member = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None:
+        msg.add_field(name=":warning: ", value="`Mike kill (user)`")
+    else:
+        msg.add_field(name=":newspaper: NEWS", value="`{} killed {} by {}`".format(author.display_name, userName.display_name, random.choice(killmsgs)))
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}kill <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+    
+killmsgs = ["beating them with a baseball bat covered with barbed wire!",
+            "breaking all their bones with chains!",
+            "shooting them with a shotgun!",
+            "drowning them in a glass of water!",
+            "throwing them into a pool with sharks!",
+            "roasting the shit out of them!",
+            "throwing them out of a plane!",
+            "pushing them off a mountain!",
+            "farting at their face!",
+            "pushing them into a volcano!",
+            "spamming their DMs!",
+            "stealing their memes!",
+            "stealing their chocolate!",
+            "stealing their diamonds on their minecraft server!",
+            "throwing a bomb at them!",
+            "nuking them!",
+            "breaking their toilet!",
+            "hacking their toaster!",
+            "trapping them in a cage with hungry lions!",
+            "hacking their car while they were driving!",
+            "hitting their private spot!",
+            "poisoning their food!",
+            "playing earrape too loud!",
+            "putting them in the hunger games!",
+            "putting them in the maze!",
+            "making them watch furry porn!",
+            "making them use internet explorer!",
+            "driving over them with a tank!",
+            "shooting them with a tank!",
+            "trapping them in their mind!",
+            "sending them to the realm of darkness!",
+            "cutting them to death!",
+            "torturing them til they died!",
+            "sending them to hell!",
+            "selling their soul to the devil!",
+            "leaking their browsing history!",
+            "setting them on fire!"]
 client.run(os.environ['BOT_TOKEN'])
