@@ -574,7 +574,7 @@ async def takerole(ctx, userName: discord.Member = None, *, args = None):
     serverroles = [ctx.message.server.roles]
     if admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
         if userName == None or args == None:
-            msg.add_field(name=":octagonal_sign: ", value="`Mike takerole (user) (role name)`")
+            msg.add_field(name=":warning: ", value="`Mike takerole (user) (role name)`")
         else:
             rolename2 = discord.utils.get(ctx.message.server.roles, name='{}'.format(args))
             if rolename2 == None:
@@ -589,6 +589,35 @@ async def takerole(ctx, userName: discord.Member = None, *, args = None):
     await client.say(embed=msg)
     print("============================================================")
     print("}takerole <user> <role name>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+    
+# }purge <number>
+@client.command(pass_context=True)
+async def purge(ctx, number: int = None):
+    helper_role = discord.utils.get(ctx.message.server.roles, name='Mods')
+    mod_role = discord.utils.get(ctx.message.server.roles, name='Mods')
+    admin_role = discord.utils.get(ctx.message.server.roles, name='Admins')
+    manager_role = discord.utils.get(ctx.message.server.roles, name='Co-Owner')
+    owner_role = discord.utils.get(ctx.message.server.roles, name='Owners')
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if helper_role in author.roles or mod_role in author.roles or admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
+        if number == None:
+            msg.add_field(name=":octagonal_sign: ", value="`Mike purge (number)`")
+        else:
+            deleted = await client.purge_from(ctx.message.channel, limit=number)
+            if len(deleted) < number:
+                msg.add_field(name=":wastebasket: ", value="`{} tried to delete {} messages!`\n`Deleted {} message(s)!`".format(author.display_name, number, len(deleted)))
+            else:
+                msg.add_field(name=":wastebasket: ", value="`{} deleted {} message(s)!`".format(author.display_name, len(deleted)))
+    else:
+        msg.add_field(name=":octagonal_sign: ", value="`This command can only be used by staff!`")
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}purge <number>")
     print("{} ### {}".format(author, author.id))
     print("============================================================")
 client.run(os.environ['BOT_TOKEN'])
