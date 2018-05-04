@@ -699,4 +699,35 @@ async def tempban(ctx, userName: discord.Member = None, time: int = None, *, arg
     print("}tempban <user> <time> [reason]")
     print("{} ### {}".format(author, author.id))
     print("============================================================")
+    
+# }ban <user> [reason]
+@client.command(pass_context=True)
+async def ban(ctx, userName: discord.Member = None, *, args = None):
+    helper_role = discord.utils.get(ctx.message.server.roles, name='Mods')
+    mod_role = discord.utils.get(ctx.message.server.roles, name='Mods')
+    admin_role = discord.utils.get(ctx.message.server.roles, name='Admins')
+    manager_role = discord.utils.get(ctx.message.server.roles, name='Co-Owner')
+    owner_role = discord.utils.get(ctx.message.server.roles, name='Owners')
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if mod_role in author.roles or admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
+        if userName == None:
+            msg.add_field(name=":warning: ", value="`Mike ban (user) (reason)`")
+        elif helper_role in userName.roles or mod_role in userName.roles or admin_role in userName.roles or manager_role in userName.roles or owner_role in userName.roles:
+            msg.add_field(name=":warning: ", value="`You can't ban other staff!`")
+        elif args == None:
+            msg.add_field(name=":hammer: Ban Hammer", value="`{} banned {}!`\n`Reason: ?`".format(author.display_name, userName.display_name))
+            await client.ban(userName)
+        else:
+            msg.add_field(name=":hammer: Ban Hammer", value="`{} banned {}!`\n`Reason: {}`".format(author.display_name, userName.display_name, args))
+            await client.ban(userName)
+    else:
+        msg.add_field(name=":warning: ", value="`This command can only be used by Moderators, Administrators, Co-Owners and Owners!`")
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}ban <user> [reason]")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
 client.run(os.environ['BOT_TOKEN'])
