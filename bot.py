@@ -759,7 +759,7 @@ async def idban(ctx, userID: int = None, *, args = None):
     msg.set_footer(text=footer_text)
     if manager_role in author.roles or owner_role in author.roles:
         if userID == None:
-            msg.add_field(name=":octagonal_sign: ", value="`Mike idban (user id) (reason)`")
+            msg.add_field(name=":warning: ", value="`Mike idban (user id) (reason)`")
         elif user == None and args is not None:
             msg.add_field(name=":tools: ", value="`{} ID-Banned the following ID: {}!`\n`Reason: {}`".format(author.display_name, userID, args))
             await client.http.ban(userID, guild.id, 0)
@@ -767,12 +767,45 @@ async def idban(ctx, userID: int = None, *, args = None):
             msg.add_field(name=":tools: ", value="`{} ID-Banned the following ID: {}!`\n`Reason: ?`".format(author.display_name, userID))
             await client.http.ban(userID, guild.id, 0)
         else:
-            msg.add_field(name=":octagonal_sign: ", value="`Unknown error!`")
+            msg.add_field(name=":warning: ", value="`Unknown error!`")
     else:
-        msg.add_field(name=":octagonal_sign: ", value="`This command can only be used by Managers and Owners!`")
+        msg.add_field(name=":warning: ", value="`This command can only be used by Mods and Admins!`")
     await client.say(embed=msg)
     print("============================================================")
     print("}idban <user id> [reason]")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+    
+# }help
+client.remove_command('help')
+@client.command(pass_context=True)
+async def help(ctx):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ""
+    msg.add_field(name=":incoming_envelope: ", value="`You can see all commands in the #mike-commands channel!`")
+    msg.set_footer(text=footer_text)
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}help")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+    
+# }ping
+@client.command(pass_context=True)
+async def ping(ctx):
+    channel = ctx.message.channel
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.set_footer(text=footer_text)
+    msg.title = ""
+    t1 = time.perf_counter()
+    await client.send_typing(channel)
+    t2 = time.perf_counter()
+    msg.add_field(name=":satellite: ", value="`Yes, I am here. No need to ping me.`\n`Ping: {}ms`".format(round((t2-t1)*1000)))
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}ping")
     print("{} ### {}".format(author, author.id))
     print("============================================================")
 client.run(os.environ['BOT_TOKEN'])
