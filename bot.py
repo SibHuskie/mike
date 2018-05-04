@@ -730,4 +730,65 @@ async def ban(ctx, userName: discord.Member = None, *, args = None):
     print("}ban <user> [reason]")
     print("{} ### {}".format(author, author.id))
     print("============================================================")
+    
+# }unban <user id>
+@client.command(pass_context=True)
+async def unban(ctx, userID = None):
+    mod_role = discord.utils.get(ctx.message.server.roles, name='Mods')
+    admin_role = discord.utils.get(ctx.message.server.roles, name='Admins')
+    manager_role = discord.utils.get(ctx.message.server.roles, name='Co-Owner')
+    owner_role = discord.utils.get(ctx.message.server.roles, name='Owners')
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if mod_role in author.roles or admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
+        if userID == None:
+            msg.add_field(name=":warning: ", value="`Mike unban (user id)`")
+        else:
+            banned_users = await client.get_bans(ctx.message.server)
+            user = discord.utils.get(banned_users,id=userID)
+            if user is not None:
+                await client.unban(ctx.message.server, user)
+                msg.add_field(name=":tools: ", value="`{} unbanned the user with the following ID: {}!`".format(author.display_name, userID))
+            else:
+                msg.add_field(name=":warning: ", value="`The ID you specified is not banned! ID: {}`".format(userID))
+    else:
+        msg.add_field(name=":warning: ", value="`This command can only be used by Moderators, Administrators, Co-Owners and Owners!`")
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}unban <user>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+    
+# }ban <user> [reason]
+@client.command(pass_context=True)
+async def idban(ctx, userID = None, *, args = None):
+    helper_role = discord.utils.get(ctx.message.server.roles, name='Mods')
+    mod_role = discord.utils.get(ctx.message.server.roles, name='Mods')
+    admin_role = discord.utils.get(ctx.message.server.roles, name='Admins')
+    manager_role = discord.utils.get(ctx.message.server.roles, name='Co-Owner')
+    owner_role = discord.utils.get(ctx.message.server.roles, name='Owners')
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if mod_role in author.roles or admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
+        if userName == None:
+            msg.add_field(name=":warning: ", value="`Mike idban (userID) (reason)`")
+        elif helper_role in userName.roles or mod_role in userName.roles or admin_role in userName.roles or manager_role in userName.roles or owner_role in userName.roles:
+            msg.add_field(name=":warning: ", value="`You can't ban other staff!`")
+        elif args == None:
+            msg.add_field(name=":hammer: Ban Hammer", value="`{} ID banned {}!`\n`Reason: ?`".format(author.display_name, userID))
+            await client.ban(userName)
+        else:
+            msg.add_field(name=":hammer: Ban Hammer", value="`{} ID banned {}!`\n`Reason: {}`".format(author.display_name, userID, args))
+            await client.ban(userName)
+    else:
+        msg.add_field(name=":warning: ", value="`This command can only be used by Moderators, Administrators, Co-Owners and Owners!`")
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}ban <user> [reason]")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
 client.run(os.environ['BOT_TOKEN'])
