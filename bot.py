@@ -15,7 +15,7 @@ async def on_ready():
     print(client.user.name)
     print(client.user.id)
     print("---------------")
-    await client.change_presence(game=discord.Game(name='wit Huskie'))
+    await client.change_presence(game=discord.Game(name='on Open Mic™'))
 
 # }tempmute <user> <time> [reason]
 @client.command(pass_context=True)
