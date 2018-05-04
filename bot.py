@@ -808,4 +808,44 @@ async def ping(ctx):
     print("}ping")
     print("{} ### {}".format(author, author.id))
     print("============================================================")
+    
+# %cookie <user> <number>
+@client.command(pass_context=True)
+async def cookie(ctx, userName: discord.Member = None, number: int = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None or number == None:
+        msg.add_field(name=":warning: ", value="`Mike cookie (user) (number)`")
+    else:
+        if number > 100:
+            msg.add_field(name=":warning: ", value="`You can't give over 100 cookies to someone! Save some for yourself!`")
+        else:
+            msg.add_field(name=":smiley: ", value="`{} gave {}` :cookie: `to {}!`\n`Be like {}!`".format(author.display_name, number, userName.display_name, author.display_name))
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}cookie <user> <number>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
+    
+# %cake <user> <number>
+@client.command(pass_context=True)
+async def cake(ctx, userName: discord.Member = None, number: int = None):
+    author = ctx.message.author
+    msg = discord.Embed(colour=0xdb5000, description= "")
+    msg.title = ""
+    msg.set_footer(text=footer_text)
+    if userName == None or number == None:
+        msg.add_field(name=":warning: ", value="`Mike cake (user) (number)`")
+    else:
+        if number > 8:
+            msg.add_field(name=":warning: ", value="`There are usually 8 slices in one cake, you trying to give them diabetes?!`")
+        else:
+            msg.add_field(name=":smiley: ", value="`{} gave {}` :cake: `to {}!`\n`Praise {}!`".format(author.display_name, number, userName.display_name, author.display_name))
+    await client.say(embed=msg)
+    print("============================================================")
+    print("}cookie <user> <number>")
+    print("{} ### {}".format(author, author.id))
+    print("============================================================")
 client.run(os.environ['BOT_TOKEN'])
