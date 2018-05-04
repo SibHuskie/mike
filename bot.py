@@ -759,16 +759,16 @@ async def idban(ctx, userID = None, *, args = None):
     msg.title = ""
     msg.set_footer(text=footer_text)
     if mod_role in author.roles or admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
-        if userName == None:
+        if userID == None:
             msg.add_field(name=":warning: ", value="`Mike idban (userID) (reason)`")
         elif helper_role in userName.roles or mod_role in userName.roles or admin_role in userName.roles or manager_role in userName.roles or owner_role in userName.roles:
             msg.add_field(name=":warning: ", value="`You can't ban other staff!`")
         elif args == None:
             msg.add_field(name=":hammer: Ban Hammer", value="`{} ID banned {}!`\n`Reason: ?`".format(author.display_name, userID))
-            await client.ban(userName)
+            await client.ban(userID)
         else:
             msg.add_field(name=":hammer: Ban Hammer", value="`{} ID banned {}!`\n`Reason: {}`".format(author.display_name, userID, args))
-            await client.ban(userName)
+            await client.ban(userID)
     else:
         msg.add_field(name=":warning: ", value="`This command can only be used by Moderators, Administrators, Co-Owners and Owners!`")
     await client.say(embed=msg)
