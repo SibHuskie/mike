@@ -746,34 +746,33 @@ async def unban(ctx, userID = None):
     print("{} ### {}".format(author, author.id))
     print("============================================================")
     
-# }ban <user> [reason]
+# }idban <user id> [reason]
 @client.command(pass_context=True)
-async def idban(ctx, userID = None, *, args = None):
-    helper_role = discord.utils.get(ctx.message.server.roles, name='Mods')
-    mod_role = discord.utils.get(ctx.message.server.roles, name='Mods')
-    admin_role = discord.utils.get(ctx.message.server.roles, name='Admins')
-    manager_role = discord.utils.get(ctx.message.server.roles, name='Co-Owner')
-    owner_role = discord.utils.get(ctx.message.server.roles, name='Owners')
+async def idban(ctx, userID: int = None, *, args = None):
+    manager_role = discord.utils.get(ctx.message.server.roles, name='Mods')
+    owner_role = discord.utils.get(ctx.message.server.roles, name='Admins')
     author = ctx.message.author
+    guild = ctx.message.server
+    user = guild.get_member(userID)
     msg = discord.Embed(colour=0xdb5000, description= "")
     msg.title = ""
     msg.set_footer(text=footer_text)
-    if mod_role in author.roles or admin_role in author.roles or manager_role in author.roles or owner_role in author.roles:
+    if manager_role in author.roles or owner_role in author.roles:
         if userID == None:
-            msg.add_field(name=":warning: ", value="`Mike idban (userID) (reason)`")
-        elif helper_role in userName.roles or mod_role in userName.roles or admin_role in userName.roles or manager_role in userName.roles or owner_role in userName.roles:
-            msg.add_field(name=":warning: ", value="`You can't ban other staff!`")
-        elif args == None:
-            msg.add_field(name=":hammer: Ban Hammer", value="`{} ID banned {}!`\n`Reason: ?`".format(author.display_name, userID))
-            await client.ban(userID)
+            msg.add_field(name=":octagonal_sign: ", value="`Mike idban (user id) (reason)`")
+        elif user == None and args is not None:
+            msg.add_field(name=":tools: ", value="`{} ID-Banned the following ID: {}!`\n`Reason: {}`".format(author.display_name, userID, args))
+            await client.http.ban(userID, guild.id, 0)
+        elif user == None and args == None:
+            msg.add_field(name=":tools: ", value="`{} ID-Banned the following ID: {}!`\n`Reason: ?`".format(author.display_name, userID))
+            await client.http.ban(userID, guild.id, 0)
         else:
-            msg.add_field(name=":hammer: Ban Hammer", value="`{} ID banned {}!`\n`Reason: {}`".format(author.display_name, userID, args))
-            await client.ban(userID)
+            msg.add_field(name=":octagonal_sign: ", value="`Unknown error!`")
     else:
-        msg.add_field(name=":warning: ", value="`This command can only be used by Moderators, Administrators, Co-Owners and Owners!`")
+        msg.add_field(name=":octagonal_sign: ", value="`This command can only be used by Managers and Owners!`")
     await client.say(embed=msg)
     print("============================================================")
-    print("}ban <user> [reason]")
+    print("}idban <user id> [reason]")
     print("{} ### {}".format(author, author.id))
     print("============================================================")
 client.run(os.environ['BOT_TOKEN'])
